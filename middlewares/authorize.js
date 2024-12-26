@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'secret'; // This should be the same key used to sign the JWT
+ 
 
 // Middleware to check if the user is authenticated
 const authenticateToken = (req, res, next) => {
@@ -13,7 +13,7 @@ console.log('token',token)
 
   try {
     // Verify the token using your secret key
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // Store user info in request for use in the route
     next(); // Pass control to the next middleware/route handler
   } catch (err) {

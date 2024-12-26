@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer')
-const { getMaxListeners } = require('../models/userModel')
+
 
 const transporter = nodemailer.createTransport({
  service:'gmail',
  auth:{
-    user:'dinakarswe@gmail.com',
-    pass:'Crore@1234'
+    user:process.env.EMAIL,
+    pass:process.env.PASSWORD
  }
 
 
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail =(to,subject,text)=>{
 
     const mailOptions ={
-        from:'dinakarswe@gmail.com',
+        from:process.env.EMAIL,
         to,
         subject,
         text
@@ -24,3 +24,5 @@ const sendEmail =(to,subject,text)=>{
     return transporter.sendMail(mailOptions)
 
 }
+
+module.exports = sendEmail;

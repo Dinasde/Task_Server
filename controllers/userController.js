@@ -40,7 +40,7 @@ if(admin.role === 'Admin'){
 
     if(isMatchPassword){
 
-        const token = jwt.sign({id:admin._id},'secret',{expiresIn:'1day'})
+        const token = jwt.sign({id:admin._id},process.env.JWT_SECRET,{expiresIn:'1day'})
 
         return res.json({message:'Token Generated Successfully',token,admin})
 
